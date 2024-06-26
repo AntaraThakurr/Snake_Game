@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holistic Student Evaluation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://digicommwp.fiu.edu/givenews/wp-content/uploads/sites/13/2017/05/FIU-physics-active-learning_5-16-17.jpg'); /* Replace 'https://your-image-url.jpg' with your image URL */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        container {
+            background-color: rgba(255, 255, 255, 0.3); /* Adjust the opacity as needed */
+            padding: 50 px;
+            border-radius: 20px;
+            max-width: 1000px;
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <h1>Holistic Student Evaluation</h1>
+
+    <form id="evaluationForm">
+        <label for="project_performance">Project Performance:</label>
+        <input type="number" id="project_performance" min="0" max="100" required><br>
+
+        <label for="self_assessment">Self Assessment:</label>
+        <input type="number" id="self_assessment" min="0" max="100" required><br>
+
+        <label for="presentations">Presentations:</label>
+        <input type="number" id="presentations" min="0" max="100" required><br>
+
+        <label for="peer_reviews">Peer Reviews:</label>
+        <input type="number" id="peer_reviews" min="0" max="100" required><br>
+
+        <label for="formative_assessment">Formative Assessment:</label>
+        <input type="number" id="formative_assessment" min="0" max="100" required><br>
+
+        <label for="class_participation">Class Participation:</label>
+        <input type="number" id="class_participation" min="0" max="100" required><br>
+
+        <label for="real_world_assessment">Real World Assessment:</label>
+        <input type="number" id="real_world_assessment" min="0" max="100" required><br>
+
+        <button type="button" onclick="calculateEvaluation()">Calculate</button>
+    </form>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function calculateEvaluation() {
+        var project_performance = parseFloat(document.getElementById("project_performance").value);
+        var self_assessment = parseFloat(document.getElementById("self_assessment").value);
+        var presentations = parseFloat(document.getElementById("presentations").value);
+        var peer_reviews = parseFloat(document.getElementById("peer_reviews").value);
+        var formative_assessment = parseFloat(document.getElementById("formative_assessment").value);
+        var class_participation = parseFloat(document.getElementById("class_participation").value);
+        var real_world_assessment = parseFloat(document.getElementById("real_world_assessment").value);
+
+        var weights = {
+            "project_performance": 0.2,
+            "self_assessment": 0.1,
+            "presentations": 0.1,
+            "peer_reviews": 0.1,
+            "formative_assessment": 0.15,
+            "class_participation": 0.15,
+            "real_world_assessment": 0.2
+        };
+
+        var weighted_sum = (project_performance * weights["project_performance"]) +
+                           (self_assessment * weights["self_assessment"]) +
+                           (presentations * weights["presentations"]) +
+                           (peer_reviews * weights["peer_reviews"]) +
+                           (formative_assessment * weights["formative_assessment"]) +
+                           (class_participation * weights["class_participation"]) +
+                           (real_world_assessment * weights["real_world_assessment"]);
+
+        document.getElementById("result").innerHTML = "Holistic Evaluation Score: " + weighted_sum.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
